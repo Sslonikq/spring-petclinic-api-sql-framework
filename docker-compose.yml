@@ -1,0 +1,31 @@
+name: petclinic
+
+services:
+  postgres:
+    image: postgres:16.4
+    container_name: petclinic-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  petclinic:
+    image: springcommunity/spring-petclinic-rest:4.0.2
+    container_name: petclinic-api
+    environment:
+      SPRING_PROFILES_ACTIVE: postgres,spring-data-jpa
+      POSTGRES_URL: jdbc:postgresql://postgres:5432/${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASS: ${DB_PASSWORD}
+    ports:
+      - "9966:9966"
+    depends_on:
+      postgres:
+        condition: service_healthy
