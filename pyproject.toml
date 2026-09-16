@@ -1,0 +1,50 @@
+[project]
+name = "petclinic-api-db-tests"
+version = "0.1.0"
+description = "API and DB test automation framework for Spring PetClinic REST"
+requires-python = ">=3.13"
+
+[dependency-groups]
+test = [
+    "pytest>=8.3",
+    "requests>=2.32",
+    "psycopg[binary]>=3.2",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "faker>=30.0",
+]
+lint = [
+    "ruff>=0.8",
+]
+dev = [
+    { include-group = "test" },
+    { include-group = "lint" },
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "smoke: critical checks that the service works at all",
+    "positive: valid scenarios",
+    "negative: invalid input and error handling",
+    "integration: end-to-end backend scenarios",
+    "db: checks database state",
+    "slow: long-running tests",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "N",    # pep8-naming
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "PT",   # flake8-pytest-style
+]
