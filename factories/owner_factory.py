@@ -19,3 +19,7 @@ class OwnerFactory:
         }
         data.update(overrides)
         return OwnerRequest(**data)
+
+    @staticmethod
+    def unique_last_name() -> str:
+        return f"Qa{faker.pystr(min_chars=8, max_chars=8)}"
