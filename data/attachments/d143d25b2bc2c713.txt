@@ -1,0 +1,2 @@
+201
+{"name":"Frank","birthDate":"2025-07-18","type":{"name":"dog","id":2},"id":24,"visits":[],"ownerId":26}
