@@ -1,0 +1,2 @@
+404
+{"detail":"The requested resource could not be processed due to a data constraint violation","instance":"/petclinic/api/owners/14","status":404,"title":"DataIntegrityViolationException","type":"http://localhost:9966/petclinic/api/owners/14","timestamp":"2026-10-11T16:50:32.106282123Z","schemaValidationErrors":[]}

@@ -1,0 +1,2 @@
+400
+{"detail":"The request contains invalid or missing parameters","instance":"/petclinic/api/owners","status":400,"title":"MethodArgumentNotValidException","type":"http://localhost:9966/petclinic/api/owners","timestamp":"2026-10-11T16:50:32.264670066Z","schemaValidationErrors":[{"message":"Field 'lastName' must not be null (rejected value: null)","field":"lastName","defaultMessage":"must not be null","rejectedValue":"null"}]}

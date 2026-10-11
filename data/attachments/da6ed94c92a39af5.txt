@@ -1,0 +1,2 @@
+400
+{"detail":"The request contains invalid or missing parameters","instance":"/petclinic/api/owners","status":400,"title":"MethodArgumentNotValidException","type":"http://localhost:9966/petclinic/api/owners","timestamp":"2026-10-11T16:50:32.327770527Z","schemaValidationErrors":[{"message":"Field 'address' size must be between 1 and 255 (rejected value: )","field":"address","defaultMessage":"size must be between 1 and 255","rejectedValue":""}]}
