@@ -11,6 +11,7 @@ class BaseApiClient:
         self.base_url = (base_url or settings.api_base_url).rstrip("/")
         self.timeout = timeout
         self.session = requests.Session()
+        self.session.trust_env = False
         self.session.headers.update(
             {
                 "Accept": "application/json",
