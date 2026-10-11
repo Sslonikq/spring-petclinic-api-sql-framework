@@ -1,2 +1,0 @@
-200
-{"firstName":"Alexander","lastName":"White","address":"299 Amanda Ville Suite 866","city":"South Coryberg","telephone":"3703772522","pets":[{"name":"Steven","birthDate":"2016-12-20","type":{"name":"dog","id":2},"id":15,"visits":[{"description":"Pick design new.","id":6,"petId":15,"date":"2025-11-01"}],"ownerId":12}],"id":12}

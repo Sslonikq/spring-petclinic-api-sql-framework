@@ -1,2 +1,0 @@
-201
-{"name":"Jeffery","birthDate":"2020-10-10","type":{"name":"dog","id":2},"id":21,"visits":[],"ownerId":23}

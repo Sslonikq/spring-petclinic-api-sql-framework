@@ -1,2 +1,0 @@
-201
-{"firstName":"Scott","lastName":"Rice","address":"0730 Baxter Motorway","city":"East Joseph","telephone":"1120765317","pets":[],"id":24}
