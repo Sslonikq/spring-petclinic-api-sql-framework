@@ -2,6 +2,7 @@ from collections.abc import Iterator
 from pathlib import Path
 from typing import Any
 
+import allure
 import pytest
 
 from api.base_client import BaseApiClient
@@ -30,6 +31,22 @@ def db_client() -> Iterator[DatabaseClient]:
     client = DatabaseClient()
     yield client
     client.close()
+
+
+FEATURES_BY_DIRECTORY = {
+    "owners": "Owners",
+    "pets": "Pets",
+    "visits": "Visits",
+    "integration": "Integration",
+}
+
+
+def pytest_collection_modifyitems(items: list[pytest.Item]) -> None:
+    for item in items:
+        feature = FEATURES_BY_DIRECTORY.get(item.path.parent.name)
+        if feature:
+            item.add_marker(allure.epic("PetClinic REST"))
+            item.add_marker(allure.feature(feature))
 
 
 @pytest.fixture
