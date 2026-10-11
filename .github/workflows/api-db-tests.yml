@@ -101,3 +101,48 @@ jobs:
             - name: Stop stand and remove volumes
               if: always()
               run: docker compose --profile "*" down -v
+
+    allure-report:
+        name: Publish Allure report
+        needs: tests
+        if: ${{ !cancelled() && needs.tests.result != 'skipped' }}
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            - name: Download Allure results
+              uses: actions/download-artifact@v4
+              with:
+                  name: allure-results-postgres
+                  path: allure-results
+
+            - name: Check out previous report history
+              uses: actions/checkout@v4
+              continue-on-error: true
+              with:
+                  ref: gh-pages
+                  path: gh-pages
+
+            - name: Restore report history
+              run: cp -r gh-pages/history allure-results/ 2>/dev/null || true
+
+            - name: Install Allure CLI
+              run: npm install -g allure-commandline
+
+            - name: Generate Allure report
+              run: allure generate allure-results -o allure-report --clean
+
+            - name: Deploy report to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v4
+              if: github.ref == 'refs/heads/main'
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./allure-report
+                  publish_branch: gh-pages
+
+            - name: Upload Allure report
+              uses: actions/upload-artifact@v4
+              if: always()
+              with:
+                  name: allure-report
+                  path: allure-report
