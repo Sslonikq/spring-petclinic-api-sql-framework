@@ -1,4 +1,5 @@
 from collections.abc import Iterator
+from pathlib import Path
 from typing import Any
 
 import pytest
@@ -7,6 +8,7 @@ from api.base_client import BaseApiClient
 from api.owner_api import OwnerApi
 from api.pet_api import PetApi
 from api.visit_api import VisitApi
+from config.settings import settings
 from db.client import DatabaseClient
 from db.repositories.owner_repository import OwnerRepository
 from db.repositories.pet_repository import PetRepository
@@ -151,3 +153,18 @@ def created_visit(
     created: dict[str, Any] = response.json()
     created_visit_ids.append(created["id"])
     return created
+
+
+@pytest.fixture(scope="session", autouse=True)
+def allure_environment(request: pytest.FixtureRequest) -> None:
+    results_dir = Path(request.config.getoption("allure_report_dir") or "allure-results")
+    results_dir.mkdir(parents=True, exist_ok=True)
+    properties = {
+        "API_BASE_URL": settings.api_base_url,
+        "DB_ENGINE": settings.db_engine,
+        "DB_HOST": settings.db_host,
+        "DB_PORT": settings.db_port,
+        "DB_NAME": settings.db_name,
+    }
+    lines = [f"{key}={value}" for key, value in properties.items()]
+    (results_dir / "environment.properties").write_text("\n".join(lines), encoding="utf-8")
