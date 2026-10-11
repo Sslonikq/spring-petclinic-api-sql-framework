@@ -1,0 +1,2 @@
+201
+{"name":"Anthony","birthDate":"2022-07-26","type":{"name":"snake","id":4},"id":20,"visits":[],"ownerId":22}

@@ -1,0 +1,2 @@
+200
+{"firstName":"Stephanie","lastName":"Acosta","address":"62171 Hart Springs Suite 775","city":"Walkerstad","telephone":"8370160415","pets":[{"name":"Brittany","birthDate":"2026-02-17","type":{"name":"dog","id":2},"id":15,"visits":[{"description":"Throughout court available.","id":6,"petId":15,"date":"2026-09-21"}],"ownerId":12}],"id":12}

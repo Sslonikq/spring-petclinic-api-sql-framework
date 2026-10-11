@@ -1,2 +1,0 @@
-200
-{"name":"Melanie","birthDate":"2017-09-14","type":{"name":"dog","id":2},"id":21,"visits":[],"ownerId":23}

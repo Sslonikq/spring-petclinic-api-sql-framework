@@ -1,2 +1,0 @@
-500
-{"detail":"An unexpected error occurred while processing your request","instance":"/petclinic/api/owners","status":500,"title":"ConstraintViolationException","type":"http://localhost:9966/petclinic/api/owners","timestamp":"2026-10-11T16:54:12.316491434Z","schemaValidationErrors":[]}
