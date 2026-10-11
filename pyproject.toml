@@ -9,6 +9,7 @@ test = [
     "pytest>=8.3",
     "requests>=2.32",
     "psycopg[binary]>=3.2",
+    "pymysql>=1.1",
     "pydantic>=2.9",
     "pydantic-settings>=2.6",
     "faker>=30.0",
