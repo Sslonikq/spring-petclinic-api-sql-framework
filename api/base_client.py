@@ -1,5 +1,6 @@
 from typing import Any
 
+import allure
 import requests
 from requests import Response
 
@@ -22,8 +23,31 @@ class BaseApiClient:
     def _build_url(self, path: str) -> str:
         return f"{self.base_url}/{path.lstrip('/')}"
 
+    @staticmethod
+    def _attach(response: Response) -> None:
+        request_body = response.request.body
+        if isinstance(request_body, bytes):
+            request_body = request_body.decode("utf-8")
+
+        allure.attach(
+            request_body or "",
+            name="Request",
+            attachment_type=(
+                allure.attachment_type.JSON if request_body else allure.attachment_type.TEXT
+            ),
+        )
+        allure.attach(
+            f"{response.status_code}\n{response.text}",
+            name="Response",
+            attachment_type=allure.attachment_type.TEXT,
+        )
+
     def _request(self, method: str, path: str, **kwargs: Any) -> Response:
-        return self.session.request(method, self._build_url(path), timeout=self.timeout, **kwargs)
+        url = self._build_url(path)
+        with allure.step(f"{method} {path}"):
+            response = self.session.request(method, url, timeout=self.timeout, **kwargs)
+            self._attach(response)
+        return response
 
     def get(self, path: str, params: dict[str, Any] | None = None) -> Response:
         return self._request("GET", path, params=params)
