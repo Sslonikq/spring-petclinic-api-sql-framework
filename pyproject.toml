@@ -13,6 +13,7 @@ test = [
     "pydantic>=2.9",
     "pydantic-settings>=2.6",
     "faker>=30.0",
+    "allure-pytest>=2.13",
 ]
 lint = [
     "ruff>=0.8",
@@ -25,7 +26,7 @@ dev = [
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
-addopts = "-ra --strict-markers"
+addopts = "-ra --strict-markers --alluredir=allure-results --clean-alluredir"
 markers = [
     "smoke: critical checks that the service works at all",
     "positive: valid scenarios",
