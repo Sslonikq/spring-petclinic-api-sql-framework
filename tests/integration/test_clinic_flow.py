@@ -34,7 +34,7 @@ def test_owner_pet_visit_chain_is_consistent_in_database(
     created_owner_ids.append(owner_id)
     assert owner_response.status_code == 201
 
-    pet = PetFactory.build(type = PetType(id=4, name="snake"))
+    pet = PetFactory.build(type=PetType(id=4, name="snake"))
     pet_response = pet_api.create_pet(owner_id, pet.to_payload())
     pet_id = pet_response.json()["id"]
     created_pet_ids.append(pet_id)
@@ -58,7 +58,6 @@ def test_owner_pet_visit_chain_is_consistent_in_database(
     assert chain["visit_date"] == visit.date
 
 
-
 @pytest.mark.integration
 @pytest.mark.db
 def test_owner_response_contains_pet_and_visit(
@@ -78,7 +77,6 @@ def test_owner_response_contains_pet_and_visit(
     assert visits[0]["id"] == created_visit["id"]
 
 
-
 @pytest.mark.integration
 @pytest.mark.db
 def test_owner_with_pets_is_not_deleted(
@@ -95,7 +93,6 @@ def test_owner_with_pets_is_not_deleted(
     assert owner_repository.exists(created_owner["id"]) is True
     assert pet_repository.exists(created_pet["id"]) is True
     assert visit_repository.exists(created_visit["id"]) is True
-
 
 
 @pytest.mark.integration
