@@ -1,0 +1,2 @@
+200
+{"firstName":"Jerry","lastName":"Jackson","address":"056 Natalie Plaza Suite 009","city":"East Amanda","telephone":"3914302144","pets":[{"name":"Lisa","birthDate":"2016-12-30","type":{"name":"dog","id":2},"id":15,"visits":[{"date":"2026-05-01","description":"Democratic way.","id":6,"petId":15}],"ownerId":12}],"id":12}
